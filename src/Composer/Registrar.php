@@ -91,14 +91,37 @@ class Registrar
 
     protected function getVersions($path): array
     {
-        $package = $this->composer->getPackage();
-        $requires = $package->getRequires();
-        $devRequires = $package->getDevRequires();
-        $resolver = fn (Link $link) => $link
-            ->getConstraint()
-            ->getLowerBound()
-            ->getVersion();
+        return array_map(
+            [$this, 'resolveVersion'],
+            $this->getPackageConstraints($path)
+        );
+    }
 
-        return array_map($resolver, $requires + $devRequires);
+    /**
+     * @return array<string, Link>
+     */
+    protected function getPackageConstraints($path): array
+    {
+        $package = $this->composer->getPackage();
+
+        return $package->getRequires() + $package->getDevRequires();
+    }
+
+    protected function resolveVersion(Link $link): string
+    {
+        $ver = $link->getPrettyConstraint();
+
+        if (str_starts_with($ver, 'dev-')) {
+            return $ver;
+        }
+
+        return $this->normalizeVersion(
+            $link->getConstraint()->getLowerBound()->getVersion()
+        );
+    }
+
+    protected function normalizeVersion(string $version): string
+    {
+        return str_replace('-dev', '', $version);
     }
 }
