@@ -1,0 +1,38 @@
+# Local development files
+*.cache
+/@playground
+/build/
+/cache/
+/dist/
+/logs/
+/temp/
+
+# Composer
+/vendor/
+composer.lock
+captainhook.config.json
+cghooks.lock
+
+# Docker
+docker-compose.override.yml
+/docker/@local/
+
+# Env
+*.env
+.env.*
+!.env.example
+
+# Editor/ IDE
+*.code-workspace
+.vscode
+.idea
+.project
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# System files
+.DS_Store
+Thumbs.db

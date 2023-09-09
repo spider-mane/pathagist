@@ -1,0 +1,23 @@
+{
+  "name": "test/package",
+  "repositories": [
+    {
+      "type": "path",
+      "url": "../"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "test/dependency-1": "^5.4",
+    "webtheory/pathagist": "dev-master"
+  },
+  "require-dev": {
+    "test/dependency-2": "10.8"
+  },
+  "config": {
+    "allow-plugins": {
+      "webtheory/pathagist": true
+    }
+  }
+}

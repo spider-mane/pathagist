@@ -1,0 +1,12 @@
+// For format details, see https://aka.ms/devcontainer.json.
+{
+  "name": "pathagist",
+  "dockerComposeFile": [
+    "../docker-compose.yml",
+    "../docker-compose.override.yml"
+  ],
+  "service": "app",
+  "remoteUser": "pathagist",
+  "workspaceFolder": "/app",
+  "shutdownAction": "none"
+}
