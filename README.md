@@ -28,7 +28,7 @@ Use locally stored packages as composer dependencies
 Via Composer
 
 ```bash
-composer require webtheory/pathagist
+composer global require webtheory/pathagist
 ```
 
 ## Usage

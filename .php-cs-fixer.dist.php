@@ -9,6 +9,7 @@ $finder = Finder::create()
     ->ignoreDotFiles(true)
     ->ignoreVCS(true)
     ->append([
+        'scripts/pathagist',
         ...glob('*.php'),
         ...glob('.*.php'),
     ]);
@@ -65,4 +66,5 @@ return (new Config('pathagist'))
         'trailing_comma_in_multiline' => true,
         'trim_array_spaces' => true,
         'unary_operator_spaces' => true,
+        'no_singleline_whitespace_before_semicolons' => true,
     ]);

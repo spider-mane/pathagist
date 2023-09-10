@@ -1,0 +1,30 @@
+#!/usr/bin/env php
+<?php
+
+use Symfony\Component\Console\Application;
+use WebTheory\Pathagist\Config\Config;
+use WebTheory\Pathagist\Console\LoadCommand;
+use WebTheory\Pathagist\Console\UnloadCommand;
+
+$autoloaders = [
+    $_composer_autoload_path ?? '',
+    getcwd() . '/vendor/autoload.php',
+    __DIR__ . '/../vendor/autoload.php',
+    __DIR__ . '/../../../autoload.php',
+];
+
+foreach ($autoloaders as $autoload) {
+    if (file_exists($autoload)) {
+        require_once $autoload;
+
+        break;
+    }
+}
+
+$app = new Application('pathagist', '0.15.0');
+$config = Config::make();
+
+$app->add(new LoadCommand($config));
+$app->add(new UnloadCommand($config));
+
+$app->run();
